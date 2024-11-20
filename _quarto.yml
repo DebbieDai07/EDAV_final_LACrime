@@ -6,11 +6,11 @@ execute:
   echo: true
 
 book:
-  title: "YOUR PROJECT TITLE"
+  title: "Crime Analysis of LA"
   author:
-    - AUTHOR1 (UNI1)
-    - AUTHOR2 (UNI2)
-  repo-url: https://github.com/YOUR_GITHUB_ACCOUNT/REPO_NAME
+    - Debbie Dai (fd2585)
+    - Yueran Wang (yw4441)
+  repo-url: https://github.com/DebbieDai07/EDAV_final_LACrime.git
   date: today
   page-footer:
     right: |
