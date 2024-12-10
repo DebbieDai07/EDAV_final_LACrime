@@ -4,7 +4,7 @@ This is the final project of EDAV 2024Fall.
 
 - An exploratory data analysis on condition and factor that affect the crime rate in LA.
 
-- Rendered Book [here](debbiedai07.github.io/EDAV_final_LACrime/) 
+- Rendered Book [here](https://debbiedai07.github.io/EDAV_final_LACrime/)
 
 - Data Source: [crime data from 2020 to present in LA)](https://catalog.data.gov/dataset/crime-data-from-2020-to-present)
 
