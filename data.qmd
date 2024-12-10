@@ -4,5 +4,16 @@ The dataset we will be using for the project is the"Crime Data from 2020 to Pres
 
 ## Missing value analysis
 To perform the missing value analysis of the dataset, we summarized the number of missing entries for each column. Columns like Crm Cd 4, Crm Cd 3, and Crm Cd 2 have extremely high proportions of missing values with more than 900,000 entries missing. These columns represent secondary classification codes for crimes, while the primary classification of crimes is coded in a separate field with only 11 missing values. Since our focus is on analyzing the most serious crimes, the missing values in these secondary fields will not significantly impact our analysis. Similarly, fields such as Cross Street, Weapon Used Cd, and Weapon Desc also have substantial missing information, indicating that these attributes are likely not applicable to many incidents. This pattern is common in the sense that most crimes do not involve weapons or take place in areas without cross streets.
+```{r}
+library(knitr)
+data <- read.csv(file='../../data/Crime_Data_from_2020_to_Present.csv')
+kable(colSums(is.na(data)))
+```
+
 
 On the other hand, fields such as DR_NO (report number), Date Rptd, Crm Cd Desc(define the Crime Code provided), DATE OCC (date of occurrence), and LAT/LON (geographic coordinates) are fully populated, ensuring a reliable analysis of crimes. Some demographic fields including Vict Descent and Vict Sex have moderate amount of missing values around 140,000 entries, possibly due to privacy concerns or incomplete reporting. Overall, while missing data in some secondary variables may pose limitations for specific analyses, the completeness of essential fields ensures the dataset to be helpful for understanding trends in crime over time and space.
+
+```{r}
+kable(as.data.frame(sapply(data, class)), col.names = c("Column", "Data Type"))
+```
+
