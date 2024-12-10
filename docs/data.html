@@ -212,7 +212,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="description" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="description"><span class="header-section-number">2.1</span> Description</h2>
-<p>The dataset we will be using for the project is the”Crime Data from 2020 to Present,” which is collected and provided by the Los Angeles Police Department (LAPD) and is accessible via the U.S. government’s data portal at this link https://catalog.data.gov/dataset/crime-data-from-2020-to-present. The data is available in multiple formats, such as CSV, RDF, JSON, and XML. The dataset contains 984,046 rows and 28 columns, with each row representing a reported crime incident. The columns provide detailed information, including division record numbers, dates and times of reports, geographic areas, district numbers, types of crimes committed, weapons used, and victim demographics such as age and sex. The dataset was initially updated weekly; however, starting January 18, 2024, the LAPD temporarily shifted to a bi-weekly update schedule due to technical issues. Additionally, due to the transition of LAPD’s new Records Management System for reporting crimes and arrests since March 7th 2024, only incidents recorded in the outgoing system are currently available in the dataset. This transition may limit the completeness of recent crime records during this period. As noted by the LAPD, the data is transcribed from original and paper-based crime reports, which may introduce transcription inaccuracies. Despite these challenges, after analyzing, the dataset remains a valuable resource for analyzing crime trends in Los Angeles. For this project, the data will be imported directly in CSV format into R to facilitate cleaning and analysis.</p>
+<p>The dataset we will be using for the project is the”Crime Data from 2020 to Present,” which is collected and provided by the Los Angeles Police Department (LAPD) and is accessible via the U.S. government’s data portal at <a href="https://catalog.data.gov/dataset/crime-data-from-2020-to-present">this link</a>. The data is available in multiple formats, such as CSV, RDF, JSON, and XML. The dataset contains 984,046 rows and 28 columns, with each row representing a reported crime incident. The columns provide detailed information, including division record numbers, dates and times of reports, geographic areas, district numbers, types of crimes committed, weapons used, and victim demographics such as age and sex. The dataset was initially updated weekly; however, starting January 18, 2024, the LAPD temporarily shifted to a bi-weekly update schedule due to technical issues. Additionally, due to the transition of LAPD’s new Records Management System for reporting crimes and arrests since March 7th 2024, only incidents recorded in the outgoing system are currently available in the dataset. This transition may limit the completeness of recent crime records during this period. As noted by the LAPD, the data is transcribed from original and paper-based crime reports, which may introduce transcription inaccuracies. Despite these challenges, after analyzing, the dataset remains a valuable resource for analyzing crime trends in Los Angeles. For this project, the data will be imported directly in CSV format into R to facilitate cleaning and analysis.</p>
 </section>
 <section id="missing-value-analysis" class="level2" data-number="2.2">
 <h2 data-number="2.2" class="anchored" data-anchor-id="missing-value-analysis"><span class="header-section-number">2.2</span> Missing value analysis</h2>
@@ -220,266 +220,43 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="at">file=</span><span class="st">'../../data/Crime_Data_from_2020_to_Present.csv'</span>)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">colSums</span>(<span class="fu">is.na</span>(data)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>crime_data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="at">file=</span><span class="st">'../../data/Crime_Data_from_2020_to_Present.csv'</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>missing_summary <span class="ot">&lt;-</span> <span class="fu">colMeans</span>(<span class="fu">is.na</span>(crime_data)) <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>missing_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Column =</span> <span class="fu">names</span>(missing_summary), <span class="at">MissingPercent =</span> missing_summary)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(missing_df, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(Column, <span class="sc">-</span>MissingPercent), <span class="at">y =</span> MissingPercent)) <span class="sc">+</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">fill =</span> <span class="st">"steelblue"</span>) <span class="sc">+</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Variables"</span>, <span class="at">y =</span> <span class="st">"Percentage Missing"</span>, <span class="at">title =</span> <span class="st">"Missing Data by Column"</span>) <span class="sc">+</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<table class="caption-top table table-sm table-striped small">
-<thead>
-<tr class="header">
-<th style="text-align: left;"></th>
-<th style="text-align: right;">x</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">DR_NO</td>
-<td style="text-align: right;">0</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Date.Rptd</td>
-<td style="text-align: right;">0</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">DATE.OCC</td>
-<td style="text-align: right;">0</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">TIME.OCC</td>
-<td style="text-align: right;">0</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">AREA</td>
-<td style="text-align: right;">0</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">AREA.NAME</td>
-<td style="text-align: right;">0</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Rpt.Dist.No</td>
-<td style="text-align: right;">0</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Part.1.2</td>
-<td style="text-align: right;">0</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Crm.Cd</td>
-<td style="text-align: right;">0</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Crm.Cd.Desc</td>
-<td style="text-align: right;">0</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Mocodes</td>
-<td style="text-align: right;">0</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Vict.Age</td>
-<td style="text-align: right;">0</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Vict.Sex</td>
-<td style="text-align: right;">0</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Vict.Descent</td>
-<td style="text-align: right;">0</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Premis.Cd</td>
-<td style="text-align: right;">14</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Premis.Desc</td>
-<td style="text-align: right;">0</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Weapon.Used.Cd</td>
-<td style="text-align: right;">659765</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Weapon.Desc</td>
-<td style="text-align: right;">0</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Status</td>
-<td style="text-align: right;">0</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Status.Desc</td>
-<td style="text-align: right;">0</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Crm.Cd.1</td>
-<td style="text-align: right;">11</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Crm.Cd.2</td>
-<td style="text-align: right;">915259</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Crm.Cd.3</td>
-<td style="text-align: right;">981741</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Crm.Cd.4</td>
-<td style="text-align: right;">983984</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">LOCATION</td>
-<td style="text-align: right;">0</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Cross.Street</td>
-<td style="text-align: right;">0</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">LAT</td>
-<td style="text-align: right;">0</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">LON</td>
-<td style="text-align: right;">0</td>
-</tr>
-</tbody>
-</table>
+<div>
+<figure class="figure">
+<p><img src="data_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
 </div>
 </div>
-<p>On the other hand, fields such as DR_NO (report number), Date Rptd, Crm Cd Desc(define the Crime Code provided), DATE OCC (date of occurrence), and LAT/LON (geographic coordinates) are fully populated, ensuring a reliable analysis of crimes. Some demographic fields including Vict Descent and Vict Sex have moderate amount of missing values around 140,000 entries, possibly due to privacy concerns or incomplete reporting. Overall, while missing data in some secondary variables may pose limitations for specific analyses, the completeness of essential fields ensures the dataset to be helpful for understanding trends in crime over time and space.</p>
+</div>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">as.data.frame</span>(<span class="fu">sapply</span>(data, class)), <span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">"Column"</span>, <span class="st">"Data Type"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(naniar)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">gg_miss_var</span>(crime_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<table class="caption-top table table-sm table-striped small">
-<thead>
-<tr class="header">
-<th style="text-align: left;">Column</th>
-<th style="text-align: left;">Data Type</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">DR_NO</td>
-<td style="text-align: left;">integer</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Date.Rptd</td>
-<td style="text-align: left;">character</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">DATE.OCC</td>
-<td style="text-align: left;">character</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">TIME.OCC</td>
-<td style="text-align: left;">integer</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">AREA</td>
-<td style="text-align: left;">integer</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">AREA.NAME</td>
-<td style="text-align: left;">character</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Rpt.Dist.No</td>
-<td style="text-align: left;">integer</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Part.1.2</td>
-<td style="text-align: left;">integer</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Crm.Cd</td>
-<td style="text-align: left;">integer</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Crm.Cd.Desc</td>
-<td style="text-align: left;">character</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Mocodes</td>
-<td style="text-align: left;">character</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Vict.Age</td>
-<td style="text-align: left;">integer</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Vict.Sex</td>
-<td style="text-align: left;">character</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Vict.Descent</td>
-<td style="text-align: left;">character</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Premis.Cd</td>
-<td style="text-align: left;">integer</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Premis.Desc</td>
-<td style="text-align: left;">character</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Weapon.Used.Cd</td>
-<td style="text-align: left;">integer</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Weapon.Desc</td>
-<td style="text-align: left;">character</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Status</td>
-<td style="text-align: left;">character</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Status.Desc</td>
-<td style="text-align: left;">character</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Crm.Cd.1</td>
-<td style="text-align: left;">integer</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Crm.Cd.2</td>
-<td style="text-align: left;">integer</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Crm.Cd.3</td>
-<td style="text-align: left;">integer</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Crm.Cd.4</td>
-<td style="text-align: left;">integer</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">LOCATION</td>
-<td style="text-align: left;">character</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Cross.Street</td>
-<td style="text-align: left;">character</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">LAT</td>
-<td style="text-align: left;">numeric</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">LON</td>
-<td style="text-align: left;">numeric</td>
-</tr>
-</tbody>
-</table>
+<div>
+<figure class="figure">
+<p><img src="data_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
 </div>
 </div>
+</div>
+<p>On the other hand, fields such as DR_NO (report number), Date Rptd, Crm Cd Desc(define the Crime Code provided), DATE OCC (date of occurrence), and LAT/LON (geographic coordinates) are fully populated, ensuring a reliable analysis of crimes. Some demographic fields including Vict Descent and Vict Sex have moderate amount of missing values around 140,000 entries, possibly due to privacy concerns or incomplete reporting. Overall, while missing data in some secondary variables may pose limitations for specific analyses, the completeness of essential fields ensures the dataset to be helpful for understanding trends in crime over time and space.</p>
 
 
 </section>
