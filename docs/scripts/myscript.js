@@ -1,6 +1,3 @@
-
-console.log("myscript.js is loaded");
-
 const data = [
   { year: 2020, class: 100, frequency: 1917 },
   { year: 2020, class: 200, frequency: 32959 },
@@ -50,14 +47,14 @@ const data = [
 ];
 
 const classColors = {
-  100: "#ff0000",
-  200: "#ffa500",
-  300: "#ffff00",
-  400: "#008000",
-  500: "#0000ff",
-  600: "#4b0082",
-  700: "#ee82ee",
-  800: "#8b4513",
+  100: "#FBC4BF",
+  200: "#ADD8E6",
+  300: "#AEDCAE",
+  400: "#CEC2EB",
+  500: "#FED8B1",
+  600: "#ACDFDD",
+  700: "#FB9280",
+  800: "#FAD16B",
   900: "#808080",
 };
 
@@ -106,8 +103,24 @@ function drawChart(filteredData) {
     .call(d3.axisBottom(xScale))
     .attr("transform", `translate(0, ${height})`)
     .attr("font-size", "12px");
+    
+  svg.append("text")
+  .attr("class", "x-axis-label")
+  .attr("text-anchor", "middle")
+  .attr("x", width / 2)
+  .attr("y", height + margin.bottom - 3)
+  .text("Year");
 
-  // If all year and class selected, show grouped bars
+  
+  svg.append("text")
+    .attr("class", "y-axis-label")
+    .attr("text-anchor", "middle")
+    .attr("transform", `rotate(-90)`)
+    .attr("x", -height / 2)
+    .attr("y", margin.left - 55)
+    .text("Frequency");
+
+
   if (selectedYear === "All" && selectedClass === "All") {
     const groupedData = d3.group(filteredData, (d) => d.year);
     const groupWidth = xScale.bandwidth();
@@ -123,7 +136,7 @@ function drawChart(filteredData) {
       });
     });
   } else {
-    // Single bars
+
     g.selectAll("rect")
       .data(filteredData)
       .join("rect")
@@ -135,7 +148,7 @@ function drawChart(filteredData) {
   }
 }
 
-// Event listeners
+
 d3.selectAll(".year-button").on("click", function () {
   selectedYear = d3.select(this).attr("data-year");
   d3.selectAll(".year-button").classed("selected", false);
@@ -150,5 +163,5 @@ d3.selectAll(".class-button").on("click", function () {
   updateChart();
 });
 
-// Initial render
+
 updateChart();

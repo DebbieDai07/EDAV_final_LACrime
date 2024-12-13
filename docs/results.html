@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.433">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Crime Analysis of LA - 3&nbsp; Results</title>
+<title>3&nbsp; Results – Crime Analysis of LA</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,7 +22,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -33,7 +33,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -81,7 +81,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   "collapse-after": 3,
   "panel-placement": "start",
   "type": "textbox",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -90,6 +96,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
@@ -115,13 +122,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./results.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Results</span></a></li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-      </a>
-      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./results.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Results</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -130,12 +137,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Crime Analysis of LA</a> 
         <div class="sidebar-tools-main">
-    <a href="https://github.com/DebbieDai07/EDAV_final_LACrime.git" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <a href="https://github.com/DebbieDai07/EDAV_final_LACrime.git" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
 </div>
     </div>
       </div>
@@ -167,7 +174,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./d3graph.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Interactive D3 Chart</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Interactive Graph: Crime Seriousness Trends Over Years</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -179,7 +186,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -203,7 +210,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#how-does-crime-resolution-vary-by-area-and-crime-type" id="toc-how-does-crime-resolution-vary-by-area-and-crime-type" class="nav-link" data-scroll-target="#how-does-crime-resolution-vary-by-area-and-crime-type"><span class="header-section-number">3.3.5</span> How does crime resolution vary by area and crime type?</a></li>
   </ul></li>
   </ul>
-<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/DebbieDai07/EDAV_final_LACrime.git/edit/main/results.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/DebbieDai07/EDAV_final_LACrime.git/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/DebbieDai07/EDAV_final_LACrime.git/edit/main/results.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/DebbieDai07/EDAV_final_LACrime.git/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -223,13 +230,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
   
 
+
 </header>
+
 
 <section id="data-processing" class="level2" data-number="3.1">
 <h2 data-number="3.1" class="anchored" data-anchor-id="data-processing"><span class="header-section-number">3.1</span> Data processing</h2>
 <p>Here are packages we used in the project:</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
@@ -242,9 +251,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>In the previous section, we checked that the missing values were primarily concentrated in columns like <code>Crm Cd 4</code>, <code>Crm Cd 3</code>, and <code>Crm Cd 2</code>. But here to prevent the very small amount of missing value that would influence the graph visualizations, we removed all missing entries from the key columns that we will analyze further.</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>crime_data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"~/Downloads/Crime_Data_from_2020_to_Present.csv"</span>)</span>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>crime_data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"../data/Crime_Data_from_2020_to_Present.csv"</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>crime_data <span class="ot">&lt;-</span> crime_data <span class="sc">|&gt;</span></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(Crm.Cd<span class="fl">.1</span>)) <span class="sc">|&gt;</span> </span>
@@ -258,7 +267,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 data-number="3.2.1" class="anchored" data-anchor-id="how-has-the-seriousness-of-crimes-evolved-over-the-years"><span class="header-section-number">3.2.1</span> How has the seriousness of crimes evolved over the years?</h3>
 <p>From the data records in variable <code>Crm Cd 1</code> where a series crime class number were recorded for each committed crime, we can construct a bar chart showing the amount of crime across different seriousness over years. According to <a href="https://data.lacity.org/Public-Safety/Crime-Data-from-2020-to-Present/2nrs-mtv8/about_data">Explanation of this dataset from Los Angeles Police Department</a>, the lower class number indicate more serious case.</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>crime_data<span class="sc">$</span>DATE_OCC <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(crime_data<span class="sc">$</span>DATE.OCC, <span class="at">format=</span><span class="st">"%m/%d/%Y"</span>)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>crime_data<span class="sc">$</span>Year <span class="ot">&lt;-</span> <span class="fu">year</span>(crime_data<span class="sc">$</span>DATE_OCC)</span>
@@ -276,7 +285,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="results_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="results_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>From the graph, we can observe that extreme cases of small crimes and large crimes consistently tend to have a rather low frequency, likely due to their rarity. Although there are some variations in the number of crimes across different seriousness levels over the five years, the dominance of crime class 300 implies that crimes with moderate seriousness, such as robbery, are more common in LA.</p>
@@ -287,7 +300,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 data-number="3.2.2" class="anchored" data-anchor-id="which-crime-types-are-most-prevalent"><span class="header-section-number">3.2.2</span> Which crime types are most prevalent?</h3>
 <p>Next, we can try to verify our insight from question 5.1.1 by examining the types of prevalent crimes. <code>Crm Cd Desc</code> records a series of detailed description of the committed crime. However, since these descriptions are highly specific, we group them by key words to make 9 broader categories to present the data more effectively for analysis. We categorize all crime types into 9 main categories: assault, theft, burglary, sex offenses, graffiti, financial crimes, public order crimes, weapon, felony, and the rest are categorized into other.</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>grouped_data <span class="ot">&lt;-</span> crime_data <span class="sc">|&gt;</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Crime.Category =</span> <span class="fu">case_when</span>(</span>
@@ -318,12 +331,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">11</span>), <span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">10</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="results_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="results_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>We also include an alluvial graph here to highlight the distribution of crime seriousness levels for various crime types we defined above. But for better visualization, we exclude the 3 less frequent crime types.</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>filtered_data <span class="ot">&lt;-</span> grouped_data <span class="sc">|&gt;</span> </span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span>Crime.Category <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Fraud/Financial Crimes"</span>, <span class="st">"Graffiti"</span>, <span class="st">"Sex Offenses"</span>)) <span class="sc">|&gt;</span></span>
@@ -354,7 +371,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="results_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="results_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Based on the frequecy list, it is obvious that most prevalent record cases are theft related crimes. This seems to align with the insight from the previous question, where crimes of moderate seriousness were shown to be the most prevalent. And our alluvial graph also indicate the same idea.</p>
@@ -366,7 +387,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 data-number="3.2.3" class="anchored" data-anchor-id="where-do-this-specific-types-of-crimes-occur-most-frequently"><span class="header-section-number">3.2.3</span> Where do this specific types of crimes occur most frequently?</h3>
 <p>Before we dive into this question, let’s see how may distinct areas are recorded in this data set.</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>grouped_data <span class="sc">|&gt;</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(AREA, AREA.NAME) <span class="sc">|&gt;</span></span>
@@ -374,7 +395,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">"Area Code"</span>, <span class="st">"Area Name"</span>), <span class="at">align =</span> <span class="st">"c"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<table class="table table-sm table-striped small">
+<table class="caption-top table table-sm table-striped small">
 <thead>
 <tr class="header">
 <th style="text-align: center;">Area Code</th>
@@ -472,7 +493,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>So it turns out that there are 21 areas here. Let’s take the top 2 common crime type from our previous result and investigate where do they usually happened. Since the top 2 crime type are theft and assault, we filter them separately on the data set while group by area name to make two interactive maps for difference comparison.</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>theft_geo_map <span class="ot">&lt;-</span> grouped_data <span class="sc">|&gt;</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Crime.Category <span class="sc">==</span> <span class="st">"Theft"</span>) <span class="sc">|&gt;</span></span>
@@ -502,14 +523,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div class="leaflet html-widget html-fill-item" id="htmlwidget-e49c42a44bc779cd89db" style="width:100%;height:464px;"></div>
-<script type="application/json" data-for="htmlwidget-e49c42a44bc779cd89db">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org/copyright/\">OpenStreetMap<\/a>,  <a href=\"https://opendatacommons.org/licenses/odbl/\">ODbL<\/a>"}]},{"method":"addCircleMarkers","args":[[33.96082075831286,34.01988010630565,34.17865227859438,34.23267503267025,33.76305267584574,34.04521291064389,33.88940678682348,34.22988932455638,34.15934758765778,33.99807073170732,34.09873862390067,34.01905203175829,33.95377897390171,34.05106111736877,33.90263982678984,33.97764707854203,34.15413556211078,34.16759612604649,34.03743540328016,34.18566641582079,33.97839081471136],[-118.2395091027634,-118.1554094039615,-118.286809082767,-118.3262198780311,-118.2491403152452,-118.1719306504599,-117.6002719973525,-118.3618454436176,-118.340758228144,-118.2208343495935,-118.2135239317124,-118.1573591332635,-118.3216885592784,-118.2269969024555,-118.1445104792148,-118.1641490601264,-118.472616661204,-118.4099176277885,-118.3920382925185,-118.5132893536343,-118.0603619273743],[28.24110479425336,29.67288324379685,27.55431000769208,23.47253714450144,25.33850824338323,24.67387282126582,28.02927041505005,26.43482551483932,29.25064101861701,26.6172876153826,27.80647406630334,26.93473593707575,34.15201311782367,26.65032832818388,26.32109420217936,30.70309430660043,27.05993348107123,27.7351762208211,29.83621959967449,26.185492166465,29.31211353689802],null,null,{"interactive":true,"className":"","stroke":true,"color":["#B6B6D8","#9692C4","#C5C5E0","#FCFBFD","#EBE9F3","#F2F0F7","#BABBDB","#DCDBEC","#9F9BC9","#D9D9EA","#BFC0DE","#D2D2E7","#3F007D","#D8D8EA","#DDDDED","#7E79B8","#CFD0E6","#C1C2DE","#928EC2","#DFDFED","#9E9AC8"],"weight":5,"opacity":0.5,"fill":true,"fillColor":["#B6B6D8","#9692C4","#C5C5E0","#FCFBFD","#EBE9F3","#F2F0F7","#BABBDB","#DCDBEC","#9F9BC9","#D9D9EA","#BFC0DE","#D2D2E7","#3F007D","#D8D8EA","#DDDDED","#7E79B8","#CFD0E6","#C1C2DE","#928EC2","#DFDFED","#9E9AC8"],"fillOpacity":0.7},null,null,["<b>Area:<\/b> 77th Street <br> <b>Frequency:<\/b> 19939","<b>Area:<\/b> Central <br> <b>Frequency:<\/b> 22012","<b>Area:<\/b> Devonshire <br> <b>Frequency:<\/b> 18981","<b>Area:<\/b> Foothill <br> <b>Frequency:<\/b> 13774","<b>Area:<\/b> Harbor <br> <b>Frequency:<\/b> 16051","<b>Area:<\/b> Hollenbeck <br> <b>Frequency:<\/b> 15220","<b>Area:<\/b> Hollywood <br> <b>Frequency:<\/b> 19641","<b>Area:<\/b> Mission <br> <b>Frequency:<\/b> 17470","<b>Area:<\/b> N Hollywood <br> <b>Frequency:<\/b> 21390","<b>Area:<\/b> Newton <br> <b>Frequency:<\/b> 17712","<b>Area:<\/b> Northeast <br> <b>Frequency:<\/b> 19330","<b>Area:<\/b> Olympic <br> <b>Frequency:<\/b> 18137","<b>Area:<\/b> Pacific <br> <b>Frequency:<\/b> 29159","<b>Area:<\/b> Rampart <br> <b>Frequency:<\/b> 17756","<b>Area:<\/b> Southeast <br> <b>Frequency:<\/b> 17320","<b>Area:<\/b> Southwest <br> <b>Frequency:<\/b> 23567","<b>Area:<\/b> Topanga <br> <b>Frequency:<\/b> 18306","<b>Area:<\/b> Van Nuys <br> <b>Frequency:<\/b> 19231","<b>Area:<\/b> West LA <br> <b>Frequency:<\/b> 22255","<b>Area:<\/b> West Valley <br> <b>Frequency:<\/b> 17142","<b>Area:<\/b> Wilshire <br> <b>Frequency:<\/b> 21480"],null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addLegend","args":[{"colors":["#FCFBFD , #FAF9FC 1.4689632759181%, #ECEAF3 14.4686382840429%, #D4D4E8 27.4683132921677%, #B5B5D7 40.4679883002925%, #9692C4 53.4676633084173%, #796FB3 66.4673383165421%, #62439C 79.4670133246669%, #4C1A88 92.4666883327917%, #3F007D "],"labels":["14,000","16,000","18,000","20,000","22,000","24,000","26,000","28,000"],"na_color":null,"na_label":"NA","opacity":1,"position":"bottomright","type":"numeric","title":"Theft Frequency","extra":{"p_1":0.01468963275918102,"p_n":0.9246668833279168},"layerId":null,"className":"info legend","group":null}]},{"method":"addControl","args":["<h3>Theft Crime in LAs<\/h3>","topright",null,"info legend"]}],"limits":{"lat":[33.76305267584574,34.23267503267025],"lng":[-118.5132893536343,-117.6002719973525]}},"evals":[],"jsHooks":[]}</script>
+<div class="leaflet html-widget html-fill-item" id="htmlwidget-37d268f8c4a16f130487" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-37d268f8c4a16f130487">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org/copyright/\">OpenStreetMap<\/a>,  <a href=\"https://opendatacommons.org/licenses/odbl/\">ODbL<\/a>"}]},{"method":"addCircleMarkers","args":[[33.96082075831286,34.01988010630565,34.17865227859438,34.23267503267025,33.76305267584574,34.04521291064389,33.88940678682347,34.22988932455638,34.15934758765778,33.99807073170732,34.09873862390067,34.01905203175829,33.95377897390171,34.05106111736877,33.90263982678984,33.97764707854203,34.15413556211078,34.16759612604649,34.03743540328016,34.18566641582079,33.97839081471136],[-118.2395091027634,-118.1554094039615,-118.286809082767,-118.3262198780311,-118.2491403152452,-118.1719306504599,-117.6002719973525,-118.3618454436176,-118.340758228144,-118.2208343495935,-118.2135239317124,-118.1573591332635,-118.3216885592784,-118.2269969024555,-118.1445104792148,-118.1641490601264,-118.472616661204,-118.4099176277885,-118.3920382925185,-118.5132893536343,-118.0603619273743],[28.24110479425336,29.67288324379685,27.55431000769208,23.47253714450144,25.33850824338323,24.67387282126582,28.02927041505005,26.43482551483932,29.25064101861701,26.6172876153826,27.80647406630334,26.93473593707575,34.15201311782367,26.65032832818388,26.32109420217936,30.70309430660043,27.05993348107123,27.7351762208211,29.83621959967449,26.185492166465,29.31211353689802],null,null,{"interactive":true,"className":"","stroke":true,"color":["#B6B6D8","#9692C4","#C5C5E0","#FCFBFD","#EBE9F3","#F2F0F7","#BABBDB","#DCDBEC","#9F9BC9","#D9D9EA","#BFC0DE","#D2D2E7","#3F007D","#D8D8EA","#DDDDED","#7E79B8","#CFD0E6","#C1C2DE","#928EC2","#DFDFED","#9E9AC8"],"weight":5,"opacity":0.5,"fill":true,"fillColor":["#B6B6D8","#9692C4","#C5C5E0","#FCFBFD","#EBE9F3","#F2F0F7","#BABBDB","#DCDBEC","#9F9BC9","#D9D9EA","#BFC0DE","#D2D2E7","#3F007D","#D8D8EA","#DDDDED","#7E79B8","#CFD0E6","#C1C2DE","#928EC2","#DFDFED","#9E9AC8"],"fillOpacity":0.7},null,null,["<b>Area:<\/b> 77th Street <br> <b>Frequency:<\/b> 19939","<b>Area:<\/b> Central <br> <b>Frequency:<\/b> 22012","<b>Area:<\/b> Devonshire <br> <b>Frequency:<\/b> 18981","<b>Area:<\/b> Foothill <br> <b>Frequency:<\/b> 13774","<b>Area:<\/b> Harbor <br> <b>Frequency:<\/b> 16051","<b>Area:<\/b> Hollenbeck <br> <b>Frequency:<\/b> 15220","<b>Area:<\/b> Hollywood <br> <b>Frequency:<\/b> 19641","<b>Area:<\/b> Mission <br> <b>Frequency:<\/b> 17470","<b>Area:<\/b> N Hollywood <br> <b>Frequency:<\/b> 21390","<b>Area:<\/b> Newton <br> <b>Frequency:<\/b> 17712","<b>Area:<\/b> Northeast <br> <b>Frequency:<\/b> 19330","<b>Area:<\/b> Olympic <br> <b>Frequency:<\/b> 18137","<b>Area:<\/b> Pacific <br> <b>Frequency:<\/b> 29159","<b>Area:<\/b> Rampart <br> <b>Frequency:<\/b> 17756","<b>Area:<\/b> Southeast <br> <b>Frequency:<\/b> 17320","<b>Area:<\/b> Southwest <br> <b>Frequency:<\/b> 23567","<b>Area:<\/b> Topanga <br> <b>Frequency:<\/b> 18306","<b>Area:<\/b> Van Nuys <br> <b>Frequency:<\/b> 19231","<b>Area:<\/b> West LA <br> <b>Frequency:<\/b> 22255","<b>Area:<\/b> West Valley <br> <b>Frequency:<\/b> 17142","<b>Area:<\/b> Wilshire <br> <b>Frequency:<\/b> 21480"],null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addLegend","args":[{"colors":["#FCFBFD , #FAF9FC 1.4689632759181%, #ECEAF3 14.4686382840429%, #D4D4E8 27.4683132921677%, #B5B5D7 40.4679883002925%, #9692C4 53.4676633084173%, #796FB3 66.4673383165421%, #62439C 79.4670133246669%, #4C1A88 92.4666883327917%, #3F007D "],"labels":["14,000","16,000","18,000","20,000","22,000","24,000","26,000","28,000"],"na_color":null,"na_label":"NA","opacity":1,"position":"bottomright","type":"numeric","title":"Theft Frequency","extra":{"p_1":0.01468963275918102,"p_n":0.9246668833279168},"layerId":null,"className":"info legend","group":null}]},{"method":"addControl","args":["<h3>Theft Crime in LAs<\/h3>","topright",null,"info legend"]}],"limits":{"lat":[33.76305267584574,34.23267503267025],"lng":[-118.5132893536343,-117.6002719973525]}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 <p>For the theft frequency map, it shows that most areas have similar theft cases overall. However, some regions like Pacific, Southwest, Central, and even N. Hollywood display higher frequencies compared to others. We assume that the prevalence of theft crimes in these areas could be caused by tourist attractions and more active commercial activities. With crowds providing cover, thefts can more easily commit crimes. Meanwhile, areas like Foothill and Hollenbeck, which are labeled with lighter colors on the map, indicate lower theft crimes These places are more residential, located farther from economically developed regions, and have sparser populations. Consequently, theft crimes are less frequent in these areas.</p>
 <p>This observation suggests that the judicial department should deploy more police forces to economically developed and densely populated areas to safeguard people’s property and reduce the high number of theft incidents.</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>assault_geo_map  <span class="ot">&lt;-</span> grouped_data <span class="sc">|&gt;</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Crime.Category <span class="sc">==</span> <span class="st">"Assault"</span>) <span class="sc">|&gt;</span></span>
@@ -539,8 +560,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div class="leaflet html-widget html-fill-item" id="htmlwidget-d3a224e40773075ff74f" style="width:100%;height:464px;"></div>
-<script type="application/json" data-for="htmlwidget-d3a224e40773075ff74f">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org/copyright/\">OpenStreetMap<\/a>,  <a href=\"https://opendatacommons.org/licenses/odbl/\">ODbL<\/a>"}]},{"method":"addCircleMarkers","args":[[33.89035362504577,33.84585317501627,34.15752633732826,34.19709699461298,33.69418520255864,33.94304998790518,33.87164799550393,34.17008303167421,34.11284678489702,33.91945843561092,34.05828352307692,33.96467409845184,33.87418901319925,33.89975951867816,33.84323891037384,33.97989291660244,34.19505043502279,34.03884643611404,33.99418185198959,34.11643740438551,33.93838212154097],[-117.9925721530575,-117.5498249837346,-118.2292933060509,-118.2000755883187,-118.0193553304904,-117.817307535075,-117.5415599194455,-118.1569476696833,-118.1679436270023,-117.9585467210112,-118.0782112,-117.9700177621211,-118.0455686863608,-117.7120950071839,-117.9295001153402,-118.1802637120395,-118.5989821019196,-117.9480064149947,-118.2389168092228,-118.2655080443651,-117.9339622490505],[25.60156245231919,24.79516081819192,16.54327657992817,16.79761887887685,19.3700800204852,18.18570867467089,20.66494616494318,18.80425483766906,18.69759342803239,20.89784677903444,16.1245154965971,20.7720966683674,17.83816134022786,21.10544953323667,24.28085665704569,22.7806935803105,17.01881311960384,17.40804411759115,14.66696969383928,17.71327186038762,17.17207034693255],null,null,{"interactive":true,"className":"","stroke":true,"color":["#3F007D","#4F1F8A","#EEECF4","#EAE9F3","#BFC0DD","#D7D7E9","#A29FCB","#CBCBE3","#CDCDE4","#9D99C8","#F1F0F6","#A09CC9","#DDDCEC","#9995C5","#593093","#7566AE","#E8E6F1","#E2E2EF","#FCFBFD","#DEDEED","#E6E4F1"],"weight":5,"opacity":0.5,"fill":true,"fillColor":["#3F007D","#4F1F8A","#EEECF4","#EAE9F3","#BFC0DD","#D7D7E9","#A29FCB","#CBCBE3","#CDCDE4","#9D99C8","#F1F0F6","#A09CC9","#DDDCEC","#9995C5","#593093","#7566AE","#E8E6F1","#E2E2EF","#FCFBFD","#DEDEED","#E6E4F1"],"fillOpacity":0.7},null,null,["<b>Area:<\/b> 77th Street <br> <b>Frequency:<\/b> 16386","<b>Area:<\/b> Central <br> <b>Frequency:<\/b> 15370","<b>Area:<\/b> Devonshire <br> <b>Frequency:<\/b> 6842","<b>Area:<\/b> Foothill <br> <b>Frequency:<\/b> 7054","<b>Area:<\/b> Harbor <br> <b>Frequency:<\/b> 9380","<b>Area:<\/b> Hollenbeck <br> <b>Frequency:<\/b> 8268","<b>Area:<\/b> Hollywood <br> <b>Frequency:<\/b> 10676","<b>Area:<\/b> Mission <br> <b>Frequency:<\/b> 8840","<b>Area:<\/b> N Hollywood <br> <b>Frequency:<\/b> 8740","<b>Area:<\/b> Newton <br> <b>Frequency:<\/b> 10918","<b>Area:<\/b> Northeast <br> <b>Frequency:<\/b> 6500","<b>Area:<\/b> Olympic <br> <b>Frequency:<\/b> 10787","<b>Area:<\/b> Pacific <br> <b>Frequency:<\/b> 7955","<b>Area:<\/b> Rampart <br> <b>Frequency:<\/b> 11136","<b>Area:<\/b> Southeast <br> <b>Frequency:<\/b> 14739","<b>Area:<\/b> Southwest <br> <b>Frequency:<\/b> 12974","<b>Area:<\/b> Topanga <br> <b>Frequency:<\/b> 7241","<b>Area:<\/b> Van Nuys <br> <b>Frequency:<\/b> 7576","<b>Area:<\/b> West LA <br> <b>Frequency:<\/b> 5378","<b>Area:<\/b> West Valley <br> <b>Frequency:<\/b> 7844","<b>Area:<\/b> Wilshire <br> <b>Frequency:<\/b> 7372"],null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addLegend","args":[{"colors":["#FCFBFD , #F6F5F9 5.65043604651163%, #DCDCEC 23.8190406976744%, #B1B0D5 41.9876453488372%, #8682BD 60.15625%, #64469E 78.3248546511628%, #450E82 96.4934593023256%, #3F007D "],"labels":["6,000","8,000","10,000","12,000","14,000","16,000"],"na_color":null,"na_label":"NA","opacity":1,"position":"bottomright","type":"numeric","title":"Assault Frequency","extra":{"p_1":0.05650436046511628,"p_n":0.9649345930232558},"layerId":null,"className":"info legend","group":null}]},{"method":"addControl","args":["<h3>Assault Crime in LA<\/h3>","topright",null,"info legend"]}],"limits":{"lat":[33.69418520255864,34.19709699461298],"lng":[-118.5989821019196,-117.5415599194455]}},"evals":[],"jsHooks":[]}</script>
+<div class="leaflet html-widget html-fill-item" id="htmlwidget-0362a73fada8b7dce98a" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-0362a73fada8b7dce98a">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org/copyright/\">OpenStreetMap<\/a>,  <a href=\"https://opendatacommons.org/licenses/odbl/\">ODbL<\/a>"}]},{"method":"addCircleMarkers","args":[[33.89035362504578,33.84585317501627,34.15752633732826,34.19709699461298,33.69418520255864,33.94304998790518,33.87164799550393,34.17008303167421,34.11284678489702,33.91945843561092,34.05828352307692,33.96467409845184,33.87418901319925,33.89975951867816,33.84323891037384,33.97989291660244,34.19505043502279,34.03884643611405,33.99418185198959,34.11643740438551,33.93838212154097],[-117.9925721530575,-117.5498249837346,-118.2292933060509,-118.2000755883187,-118.0193553304904,-117.817307535075,-117.5415599194455,-118.1569476696833,-118.1679436270023,-117.9585467210112,-118.0782112,-117.9700177621211,-118.0455686863608,-117.7120950071839,-117.9295001153402,-118.1802637120395,-118.5989821019196,-117.9480064149947,-118.2389168092228,-118.2655080443651,-117.9339622490505],[25.60156245231919,24.79516081819192,16.54327657992817,16.79761887887685,19.3700800204852,18.18570867467089,20.66494616494318,18.80425483766906,18.69759342803239,20.89784677903444,16.1245154965971,20.7720966683674,17.83816134022786,21.10544953323667,24.28085665704569,22.7806935803105,17.01881311960384,17.40804411759115,14.66696969383928,17.71327186038762,17.17207034693255],null,null,{"interactive":true,"className":"","stroke":true,"color":["#3F007D","#4F1F8A","#EEECF4","#EAE9F3","#BFC0DD","#D7D7E9","#A29FCB","#CBCBE3","#CDCDE4","#9D99C8","#F1F0F6","#A09CC9","#DDDCEC","#9995C5","#593093","#7566AE","#E8E6F1","#E2E2EF","#FCFBFD","#DEDEED","#E6E4F1"],"weight":5,"opacity":0.5,"fill":true,"fillColor":["#3F007D","#4F1F8A","#EEECF4","#EAE9F3","#BFC0DD","#D7D7E9","#A29FCB","#CBCBE3","#CDCDE4","#9D99C8","#F1F0F6","#A09CC9","#DDDCEC","#9995C5","#593093","#7566AE","#E8E6F1","#E2E2EF","#FCFBFD","#DEDEED","#E6E4F1"],"fillOpacity":0.7},null,null,["<b>Area:<\/b> 77th Street <br> <b>Frequency:<\/b> 16386","<b>Area:<\/b> Central <br> <b>Frequency:<\/b> 15370","<b>Area:<\/b> Devonshire <br> <b>Frequency:<\/b> 6842","<b>Area:<\/b> Foothill <br> <b>Frequency:<\/b> 7054","<b>Area:<\/b> Harbor <br> <b>Frequency:<\/b> 9380","<b>Area:<\/b> Hollenbeck <br> <b>Frequency:<\/b> 8268","<b>Area:<\/b> Hollywood <br> <b>Frequency:<\/b> 10676","<b>Area:<\/b> Mission <br> <b>Frequency:<\/b> 8840","<b>Area:<\/b> N Hollywood <br> <b>Frequency:<\/b> 8740","<b>Area:<\/b> Newton <br> <b>Frequency:<\/b> 10918","<b>Area:<\/b> Northeast <br> <b>Frequency:<\/b> 6500","<b>Area:<\/b> Olympic <br> <b>Frequency:<\/b> 10787","<b>Area:<\/b> Pacific <br> <b>Frequency:<\/b> 7955","<b>Area:<\/b> Rampart <br> <b>Frequency:<\/b> 11136","<b>Area:<\/b> Southeast <br> <b>Frequency:<\/b> 14739","<b>Area:<\/b> Southwest <br> <b>Frequency:<\/b> 12974","<b>Area:<\/b> Topanga <br> <b>Frequency:<\/b> 7241","<b>Area:<\/b> Van Nuys <br> <b>Frequency:<\/b> 7576","<b>Area:<\/b> West LA <br> <b>Frequency:<\/b> 5378","<b>Area:<\/b> West Valley <br> <b>Frequency:<\/b> 7844","<b>Area:<\/b> Wilshire <br> <b>Frequency:<\/b> 7372"],null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addLegend","args":[{"colors":["#FCFBFD , #F6F5F9 5.65043604651163%, #DCDCEC 23.8190406976744%, #B1B0D5 41.9876453488372%, #8682BD 60.15625%, #64469E 78.3248546511628%, #450E82 96.4934593023256%, #3F007D "],"labels":["6,000","8,000","10,000","12,000","14,000","16,000"],"na_color":null,"na_label":"NA","opacity":1,"position":"bottomright","type":"numeric","title":"Assault Frequency","extra":{"p_1":0.05650436046511628,"p_n":0.9649345930232558},"layerId":null,"className":"info legend","group":null}]},{"method":"addControl","args":["<h3>Assault Crime in LA<\/h3>","topright",null,"info legend"]}],"limits":{"lat":[33.69418520255864,34.19709699461298],"lng":[-118.5989821019196,-117.5415599194455]}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 <p>From the map of assault crime frequency, it shows that areas such as 77th Street, Southeast, and Central have higher frequencies of assault crimes compared to other regions. These areas overlap with regions where more theft crimes occur, and they also share features such as more prosperous commerce and higher population density. In contrast, areas farther from the central region seem to experience fewer assault crimes. Residents in these areas are more likely to be peaceful locals.</p>
@@ -551,7 +572,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Now we have some insights into the patterns and factors influencing specific types of crime, we try to provide more accurate suggestions for interventions. To achieve this, it is important to also take a look on how time factors might affect crime patterns further.</p>
 <p>We pick the top 4 crime types and examine how their frequency varies on different months and times of the day.</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>top_4_crimes <span class="ot">&lt;-</span> grouped_data <span class="sc">|&gt;</span> </span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(Crime.Category) <span class="sc">|&gt;</span></span>
@@ -587,13 +608,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code>Warning in geom_point(linewidth = 2): Ignoring unknown parameters: `linewidth`</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="results_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="results_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>From the monthly graph, it is not surprising to see that theft remains a year-round common crime. However, the trend shows a slight decrease from the beginning of the year to the end. The fluctuation in assault frequency is smaller, with a noticeable decrease in November and December, which might be influenced by the holiday season. In addition, both burglary and other crimes exhibit stable trends, suggesting their frequencies are not significantly affected by season or month.</p>
 <p>Overall, while certain types of crimes show sightly variations in frequency across different months, the monthly graph indicates that there isn’t a strong relationship between month and crime rate.</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>hourly_data <span class="ot">&lt;-</span> top_crimes_data <span class="sc">|&gt;</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Hour, Crime.Category) <span class="sc">|&gt;</span></span>
@@ -615,7 +640,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 ℹ Please use `linewidth` instead.</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="results_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="results_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>The hour graph also provides some interesting insights. Theft crimes show a dramatic increase during the morning period, especially between 6 AM and 12 PM, and gradually decrease from 6 PM to the early morning of next day. This pattern aligns with opportunities for theft when people are commuting to or from work. Assaults increase during the daytime and decline after 9 PM, which might related to social interactions in public spaces during the day. Burglary shows slightly higher occurrences in the evening hours, as criminals often rely on the cover of darkness. And other crimes remain consistent throughout the day.</p>
@@ -628,9 +657,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="how-does-crime-frequency-vary-with-victim-age-and-gender" class="level3" data-number="3.3.1">
 <h3 data-number="3.3.1" class="anchored" data-anchor-id="how-does-crime-frequency-vary-with-victim-age-and-gender"><span class="header-section-number">3.3.1</span> How does crime frequency vary with victim age and gender?</h3>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>crime_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"~/Downloads/Crime_Data_from_2020_to_Present.csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>crime_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"../data/Crime_Data_from_2020_to_Present.csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(crime_data) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'dr_no'</span>,<span class="st">'date_rptd'</span>,<span class="st">'date_occ'</span>,<span class="st">'time_occ'</span>,<span class="st">'area'</span>,<span class="st">'area_name'</span>,<span class="st">'rep_dis_no'</span>,<span class="st">'part_1_2'</span>,</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>                          <span class="st">'crime_code'</span>,<span class="st">'crime_desc'</span>,<span class="st">'mocodes'</span>,<span class="st">'victim_age'</span>,</span>
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>                          <span class="st">'victim_sex'</span>,<span class="st">'victim_descent'</span>,<span class="st">'premise_cd'</span>,<span class="st">'premise_desc'</span>,</span>
@@ -672,7 +701,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb13-40"><a href="#cb13-40" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="results_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="results_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Remarks:</p>
@@ -685,7 +718,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="how-do-crime-types-differ-by-gender" class="level3" data-number="3.3.2">
 <h3 data-number="3.3.2" class="anchored" data-anchor-id="how-do-crime-types-differ-by-gender"><span class="header-section-number">3.3.2</span> How do crime types differ by gender?</h3>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>grouped_data <span class="sc">|&gt;</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(victim_sex <span class="sc">==</span> <span class="st">"F"</span> <span class="sc">|</span> victim_sex <span class="sc">==</span> <span class="st">"M"</span> ) <span class="sc">|&gt;</span></span>
@@ -701,7 +734,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="results_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="results_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Remarks:</p>
@@ -716,7 +753,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 data-number="3.3.3" class="anchored" data-anchor-id="how-do-crime-patterns-differ-across-age-groups"><span class="header-section-number">3.3.3</span> How do crime patterns differ across age groups?</h3>
 <p>Since there are over 100 values of ages recorded including 0 and some negative values, it’s hard to know the meanings behind those values, we choose to remove such values. In addition, for better analyzing, we first categorize age groups by child, teen, young adult, adult, and senior.</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>age_grouped_data<span class="ot">&lt;-</span>grouped_data <span class="sc">|&gt;</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(victim_sex <span class="sc">==</span> <span class="st">"F"</span> <span class="sc">|</span> victim_sex <span class="sc">==</span> <span class="st">"M"</span> ) <span class="sc">|&gt;</span></span>
@@ -759,7 +796,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb15-39"><a href="#cb15-39" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="results_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="results_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Remarks:</p>
@@ -777,7 +818,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>After having a better understanding of the relationship between victim characteristics like sex and age and criminal incidents, we want to further analyze how do resolution rates vary by different crime types.</p>
 <p>After initial inspection of the crime records, we can see only a few crimes that are marked as JO, JA, CC, which represent juvenile other, juvenile arrest, case closed. For the sake of the analysis, we choose to only focus on AO, AA, and IC, which represent adult other, adult arrest, and investigation continued.</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>crime_summary2 <span class="ot">&lt;-</span> grouped_data <span class="sc">|&gt;</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Crime_Category, status) <span class="sc">|&gt;</span></span>
@@ -809,7 +850,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb16-28"><a href="#cb16-28" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="results_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="results_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Remark:</p>
@@ -823,7 +868,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 data-number="3.3.5" class="anchored" data-anchor-id="how-does-crime-resolution-vary-by-area-and-crime-type"><span class="header-section-number">3.3.5</span> How does crime resolution vary by area and crime type?</h3>
 <p>Now we want to further see do crime resolution rates vary by different divisions of LAPD to have a better understanding of the nature of crimes.</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>area_case_summary <span class="ot">&lt;-</span> grouped_data <span class="sc">|&gt;</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(area_name, status) <span class="sc">|&gt;</span></span>
@@ -860,7 +905,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb17-33"><a href="#cb17-33" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="results_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="results_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Remark:</p>
@@ -911,18 +960,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -954,11 +992,50 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
-  function tippyHover(el, contentFn) {
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -968,8 +1045,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -981,7 +1067,130 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -1025,6 +1234,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -1050,6 +1260,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -1111,13 +1347,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./data.html" class="pagination-link">
+      <a href="./data.html" class="pagination-link" aria-label="Data">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Data</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./d3graph.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Interactive D3 Chart</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./d3graph.html" class="pagination-link" aria-label="Interactive Graph: Crime Seriousness Trends Over Years">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Interactive Graph: Crime Seriousness Trends Over Years</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -1129,10 +1365,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>   
     <div class="nav-footer-center">
       &nbsp;
-    </div>
-    <div class="nav-footer-right">This book was built with <a href="https://quarto.org/">Quarto</a>.</div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/DebbieDai07/EDAV_final_LACrime.git/edit/main/results.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/DebbieDai07/EDAV_final_LACrime.git/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>This book was built with <a href="https://quarto.org/">Quarto</a>.</p>
+</div>
   </div>
 </footer>
+
 
 
 

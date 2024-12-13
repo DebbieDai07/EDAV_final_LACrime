@@ -17,7 +17,7 @@ library(readr)
 In the previous section, we checked that the missing values were primarily concentrated in columns like `Crm Cd 4`, `Crm Cd 3`, and `Crm Cd 2`. But here to prevent the very small amount of missing value that would influence the graph visualizations, we removed all missing entries from the key columns that we will analyze further.
 
 ```{r}
-crime_data <- read.csv("~/Downloads/Crime_Data_from_2020_to_Present.csv")
+crime_data <- read.csv("../data/Crime_Data_from_2020_to_Present.csv")
 
 crime_data <- crime_data |>
   filter(!is.na(Crm.Cd.1)) |> 
@@ -276,7 +276,7 @@ Having a better understanding of patterns and trends of criminal incidents, we w
 ### How does crime frequency vary with victim age and gender?
 
 ```{r}
-crime_data <- read_csv("~/Downloads/Crime_Data_from_2020_to_Present.csv", show_col_types = FALSE)
+crime_data <- read_csv("../data/Crime_Data_from_2020_to_Present.csv", show_col_types = FALSE)
 colnames(crime_data) <- c('dr_no','date_rptd','date_occ','time_occ','area','area_name','rep_dis_no','part_1_2',
                           'crime_code','crime_desc','mocodes','victim_age',
                           'victim_sex','victim_descent','premise_cd','premise_desc',
