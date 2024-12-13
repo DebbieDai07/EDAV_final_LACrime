@@ -11,14 +11,13 @@ library(lubridate)
 library(leaflet)
 library(knitr)
 library(ggalluvial)
+library(readr)
 ```
 
 In the previous section, we checked that the missing values were primarily concentrated in columns like `Crm Cd 4`, `Crm Cd 3`, and `Crm Cd 2`. But here to prevent the very small amount of missing value that would influence the graph visualizations, we removed all missing entries from the key columns that we will analyze further.
 
 ```{r}
-# Dataset Loading
-file_path <- "../../data/Crime_Data_from_2020_to_Present.csv"
-crime_data <- read.csv(file_path)
+crime_data <- read.csv("~/Downloads/Crime_Data_from_2020_to_Present.csv")
 
 crime_data <- crime_data |>
   filter(!is.na(Crm.Cd.1)) |> 
@@ -32,14 +31,9 @@ crime_data <- crime_data |>
 From the data records in variable `Crm Cd 1` where a series crime class number were recorded for each committed crime, we can construct a bar chart showing the amount of crime across different seriousness over years. According to [Explanation of this dataset from Los Angeles Police Department](https://data.lacity.org/Public-Safety/Crime-Data-from-2020-to-Present/2nrs-mtv8/about_data), the lower class number indicate more serious case.
 
 ```{r}
-# Convert date and get year data
 crime_data$DATE_OCC <- as.Date(crime_data$DATE.OCC, format="%m/%d/%Y")
 crime_data$Year <- year(crime_data$DATE_OCC)
-
-# Group seriousness
 crime_data$Crm.Cd.1.Class <- floor(crime_data$Crm.Cd.1 / 100) * 100
-
-# Group by Year and Crm Cd 1 Class, and count frequency
 seriousness_by_year <- crime_data |>
   group_by(Year, Crm.Cd.1.Class) |>
   summarize(Count = n(), .groups = "drop")
@@ -61,10 +55,9 @@ But apart from external factors (like economy), the pattern of crime seriousness
 
 ### Which crime types are most prevalent?
 
-Next, we can try to verify our insight from question 5.1.1 by examining the types of prevalent crimes. `Crm Cd Desc` records a series of detailed description of the committed crime. However, since these descriptions are highly specific, we group them by key words to make 9 broader categories to present the data more effectively for analysis.
+Next, we can try to verify our insight from question 5.1.1 by examining the types of prevalent crimes. `Crm Cd Desc` records a series of detailed description of the committed crime. However, since these descriptions are highly specific, we group them by key words to make 9 broader categories to present the data more effectively for analysis. We categorize all crime types into 9 main categories: assault, theft, burglary, sex offenses, graffiti, financial crimes, public order crimes, weapon, felony, and the rest are categorized into other.
 
 ```{r}
-# Define the groups for crime types
 grouped_data <- crime_data |>
   mutate(Crime.Category = case_when(
     grepl("ASSAULT|BATTERY|ABUSE", Crm.Cd.Desc, ignore.case = TRUE) ~ "Assault",
@@ -78,8 +71,6 @@ grouped_data <- crime_data |>
     grepl("VANDALISM|FELONY", Crm.Cd.Desc, ignore.case = TRUE) ~ "Felony",
     TRUE ~ "Other(e.g., Arson)"
   ))
-
-# Summarize
 crime_summary <- grouped_data |>
   group_by(Crime.Category) |>
   summarize(Frequency = n(), .groups = "drop") |>
@@ -87,7 +78,7 @@ crime_summary <- grouped_data |>
 
 ggplot(crime_summary, aes(x = reorder(Crime.Category, Frequency), y = Frequency, fill = Frequency)) +
   geom_bar(stat = "identity", color = "black") +
-  coord_flip() + # Flip the coordinates for horizontal bars
+  coord_flip() + 
   labs(title = "Frequency of Crime Categories",
        x = "Crime Category",
        y = "Frequency",
@@ -99,7 +90,6 @@ ggplot(crime_summary, aes(x = reorder(Crime.Category, Frequency), y = Frequency,
 We also include an alluvial graph here to highlight the distribution of crime seriousness levels for various crime types we defined above. But for better visualization, we exclude the 3 less frequent crime types.
 
 ```{r}
-# Exclude 3 less frequent crime types
 filtered_data <- grouped_data |> 
   filter(!Crime.Category %in% c("Fraud/Financial Crimes", "Graffiti", "Sex Offenses")) |>
   group_by(Crime.Category, Crm.Cd.1.Class) |>
@@ -107,7 +97,6 @@ filtered_data <- grouped_data |>
 
 filtered_data$Crm.Cd.1.Class <- as.factor(filtered_data$Crm.Cd.1.Class)
 
-# Recode category for better visualization
 filtered_data$Crime.Category <- recode(filtered_data$Crime.Category,
                                        "Other(e.g., Arson)" = "Other Crimes",
                                        "Public Order Crimes" = "Public Order")
@@ -152,7 +141,6 @@ grouped_data |>
 So it turns out that there are 21 areas here. Let's take the top 2 common crime type from our previous result and investigate where do they usually happened. Since the top 2 crime type are theft and assault, we filter them separately on the data set while group by area name to make two interactive maps for difference comparison.
 
 ```{r}
-# Filter Theft category
 theft_geo_map <- grouped_data |>
   filter(Crime.Category == "Theft") |>
   group_by(AREA.NAME) |>
@@ -186,7 +174,6 @@ For the theft frequency map, it shows that most areas have similar theft cases o
 This observation suggests that the judicial department should deploy more police forces to economically developed and densely populated areas to safeguard people's property and reduce the high number of theft incidents.
 
 ```{r}
-# Filter Assault category
 assault_geo_map  <- grouped_data |>
   filter(Crime.Category == "Assault") |>
   group_by(AREA.NAME) |>
@@ -227,14 +214,12 @@ Now we have some insights into the patterns and factors influencing specific typ
 We pick the top 4 crime types and examine how their frequency varies on different months and times of the day.
 
 ```{r}
-# Filter the top 4 crimes on desc(frequency)
 top_4_crimes <- grouped_data |> 
   count(Crime.Category) |>
   arrange(desc(n)) |>
   slice(1:4) |>
   pull(Crime.Category)
 
-# Mutate columns for mouth and hour data
 top_crimes_data <- grouped_data |>
   filter(Crime.Category %in% top_4_crimes) |>
   mutate(
@@ -247,8 +232,7 @@ monthly_data <- top_crimes_data |>
   group_by(Month, Crime.Category) |>
   summarize(Count = n(), .groups = "drop") |>
   mutate(Month = factor(Month, levels = month.name))
-
-# Plot 1: Monthly
+#plot 1: monthly
 ggplot(monthly_data, aes(x = Month, y = Count, group = Crime.Category, color = Crime.Category)) +
   geom_line(linewidth = 1) +
   geom_point(linewidth = 2) +
@@ -285,3 +269,242 @@ ggplot(hourly_data, aes(x = Hour, y = Count, group = Crime.Category, color = Cri
 The hour graph also provides some interesting insights. Theft crimes show a dramatic increase during the morning period, especially between 6 AM and 12 PM, and gradually decrease from 6 PM to the early morning of next day. This pattern aligns with opportunities for theft when people are commuting to or from work. Assaults increase during the daytime and decline after 9 PM, which might related to social interactions in public spaces during the day. Burglary shows slightly higher occurrences in the evening hours, as criminals often rely on the cover of darkness. And other crimes remain consistent throughout the day.
 
 Compared to the monthly graph, the hour graph gives us more valuable insights about how time influences crime patterns. The morning period is the peak for theft and assault crimes, which might due to commuting traffic and crowded public spaces. The evening is the peak for burglaries. Based on these observations, we recommend strengthening public security by increasing police presence in high-traffic areas during morning rush hours and enhancing security in residential areas in night time to reduce burglary cases.
+
+## How does the broader context such as victim characteristics shape the nature and outcomes of criminal incidents?
+Having a better understanding of patterns and trends of criminal incidents, we want to analyze the nature of those crimes. In order to answer this main question, we analyze five sub-questions:
+
+### How does crime frequency vary with victim age and gender?
+
+```{r}
+crime_data <- read_csv("~/Downloads/Crime_Data_from_2020_to_Present.csv", show_col_types = FALSE)
+colnames(crime_data) <- c('dr_no','date_rptd','date_occ','time_occ','area','area_name','rep_dis_no','part_1_2',
+                          'crime_code','crime_desc','mocodes','victim_age',
+                          'victim_sex','victim_descent','premise_cd','premise_desc',
+                          'weapon_cd','weapon_desc','status','status_desc','crime_cd_1',
+                          'crime_cd_2','crime_cd_3','crime_cd_4','location','cross_street','lat','lon')
+
+grouped_data <- crime_data |>
+  mutate(Crime_Category = case_when(
+    grepl("ASSAULT|BATTERY|ABUSE", crime_desc, ignore.case = TRUE) ~ "Assault",
+    grepl("THEFT|STOLEN", crime_desc, ignore.case = TRUE) ~ "Theft",
+    grepl("BURGLARY|SHOPLIFTING", crime_desc, ignore.case = TRUE) ~ "Burglary",
+    grepl("SEX|RAPE|ORAL", crime_desc, ignore.case = TRUE) ~ "Sex Offenses",
+    grepl("GRAFFITI|DAMAGE", crime_desc, ignore.case = TRUE) ~ "Graffiti",
+    grepl("FRAUD|BUNCO|FORGERY|UNAUTHORIZED|EXTORTION", crime_desc, ignore.case = TRUE) ~ "Fraud/Financial Crimes",
+    grepl("RESTRAINING|PHONE CALLS|THREATENING|LETTER", crime_desc, ignore.case = TRUE) ~ "Public Order Crimes",
+    grepl("WEAPON", crime_desc, ignore.case = TRUE) ~ "Weapon",
+    grepl("VANDALISM|FELONY", crime_desc, ignore.case = TRUE) ~ "Felony",
+    TRUE ~ "Other(e.g., Arson)"
+  ))
+crime_summary <- grouped_data |>
+  filter(victim_sex == "F" | victim_sex == "M" ) |>
+  filter(victim_age >0)|>
+  group_by(victim_age, victim_sex) |>
+  summarise(Count = n(), .groups = "drop")
+
+
+ggplot(crime_summary, aes(x = victim_age, y = Count, color = victim_sex)) +
+  geom_line(size = 1) +
+  labs(
+    title = "Number of Crime Incidents over Victim Ages",
+    x = "Victim Age",
+    y = "Number of Incidents",
+    color = "Victim Sex"
+  ) +
+  theme_minimal() +
+  theme(
+    axis.text.x = element_text(angle = 45, hjust = 1),
+    plot.title = element_text(hjust = 0.5)
+  )
+```
+
+Remarks:
+
+1. The two lines for female and male victims show some overlap, with their overall trends being similar. For female victims, crime incidents peak between the ages of 25–37, after which there is a consistent decreasing trend. For male victims, the peak occurs slightly later, between ages 35–37, with a secondary peak around age 50. Before age 35, more incidents occur to females, but after that, males experience higher incident rates.
+
+2. For both genders, adults aged 20–40 are the most frequent targets of crimes. This group appears to be the most accessible or vulnerable to criminal activities due to higher exposure or lifestyle-related factors.
+
+From our analysis, young adults and adults (20–40 years old) are mostly affected by crimes with crime rates peaking during this period. Younger females are more likely to be victims, particularly in their mid-to-late 20s, while middle-aged males are more likely to be victims, especially in their late 30s to 50s. The gap in crime incidents between genders narrows with age, suggesting possibledifferences in vulnerbility to crimes based on age and sex.
+
+### How do crime types differ by gender?
+
+```{r}
+grouped_data |>
+  filter(victim_sex == "F" | victim_sex == "M" ) |>
+  filter(victim_age >0)|>
+  ggplot(aes(x = Crime_Category, fill = victim_sex)) +
+  geom_bar(position = "dodge") +  # Use dodge for side-by-side bars
+  labs(
+    title = "Crime Types by Victim Sex",
+    x = "Crime Category",
+    y = "Number of Incidents",
+    fill = "Victim Sex"
+  ) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+```
+
+Remarks:
+
+1. Theft and assault are the most frequent crime types happen to both females and males.
+
+2. Females are more likely to experience assault, sex offenses, and public order crimes such as threatening or harassment. In contrast, males are more affected by burglary, felony, fraud, crimes like arson, theft, and weapon-related incidents.
+
+3. Gender differences are subtle in crimes like felony and weapon involved cases, suggesting these crimes are less influenced by gender societal patterns.
+
+Theft and assault are the most frequently reported crimes. Female victims are more likely to experience assault, public order crimes, and sex offenses, while males are more affected by burglary, felony, fraud, other(e.g., Arson), theft , and weapon involved crimes. These differences highlight the role of gender as a contributing factor in the relationship between types of crimes and gender. However, certain crimes such as felony and weapon related offenses show minimal gender differences.
+
+### How do crime patterns differ across age groups?
+
+Since there are over 100 values of ages recorded including 0 and some negative values, it's hard to know the meanings behind those values, we choose to remove such values. In addition, for better analyzing, we first categorize age groups by child, teen, young adult, adult, and senior.
+
+```{r}
+age_grouped_data<-grouped_data |>
+  filter(victim_sex == "F" | victim_sex == "M" ) |>
+  filter(victim_age >0)|>
+  mutate(Age_Group = case_when(
+    victim_age < 12 ~ "Child",
+    victim_age >= 12 & victim_age < 18 ~ "Teen",
+    victim_age >= 18 & victim_age < 21 ~ "Young Adult",
+    victim_age >= 18 & victim_age < 65 ~ "Adult",
+    victim_age >= 65 ~ "Senior"
+  ))|>
+  mutate(Age_Group = factor(Age_Group, levels = c("Child", "Teen", "Young Adult", "Adult", "Senior")))
+
+age_grouped_data|>
+  group_by(Age_Group, victim_sex, Crime_Category) |>
+  summarise(Count = n(), .groups = "drop") |>
+  group_by(Age_Group) |>
+  mutate(Proportion = Count / sum(Count) * 100)|>
+  ggplot(aes(x = Crime_Category, y = Proportion, fill = victim_sex)) +
+  geom_bar(stat = "identity", position = position_dodge(width = 0.8), width = 0.6) +
+  facet_wrap(~ Age_Group, ncol = 5) +  # Facet with 5 columns
+  labs(
+    title = "Proportion of Crime Types by Victim Sex Across Age Groups",
+    subtitle = "Age Group Definitions: Child (0-12), Teen (13-17), Young Adult (18-25), Adult (26-64), Senior (65+)",
+    caption = "Data Source: LAPD | Age group definitions based on demographic standards",
+    x = "Crime Category",
+    y = "Proportion (%)",
+    fill = "Victim Sex"
+  ) +
+  scale_y_continuous(limits = c(0, 30), labels = scales::percent_format(scale = 1)) +  # Standardized y-axis limits
+  theme_minimal() +
+  coord_flip()+
+  theme(
+    axis.text.x = element_text(angle = 45, hjust = 1),  
+    strip.text = element_text(size = 10, face = "bold"),
+    plot.title = element_text(hjust = 0.5, size = 14, face = "bold"),
+    plot.subtitle = element_text(hjust = 0.5, size = 8, face = "italic"),
+    plot.caption = element_text(size = 8),
+    legend.position = "top"
+  )
+```
+
+Remarks:
+
+1. For children, assault and crimes categorized as "other" (e.g., arson) are the most dominant incident types. Females are more affected by "other" crimes and sex offenses, while males are more affected by assault and weapon-related crimes. Gender does not significantly influence public order crimes or theft for this age group.
+
+2. Teens mainly experience assault, other(e,g., arson), sex offenses, theft, and weapon. Females are more frequently victims of assault and sex offenses, with a significant gap of around 8% in the proportion of sex offenses compared to males.
+
+3. Young adults exhibit a diverse crime exposure with theft, assault, burglary, felony, other,public order crimes, sex offenses, theft, and weapon. Females experience more assault, public order crimes, and sex offenses.
+
+4. Adults show a similar crime exposure pattern to young adults, with females experiencing more assault, public order crimes, and sex offenses.
+
+5. Seniors have a similar pattern but with significantly fewer sex offenses and more theft crimes. Males experience more crimes than females except for the public order type.
+
+Crime types vary significantly across age groups. Children and teens are most affected by assault, other(e.g., Arson), and sex offenses, where females are significantly more vulnerable to sex offenses. Young adults, adults, and seniors face a broader range of crimes, including burglary, fraud, and theft, with similar proportions across categories. It's worth noting that for all age groups, females experience more sex offenses than males, while males are more affected by weapon related crimes. These findings underscore the importance of tailoring prevention strategies to specific age groups and gender differences among crimes.
+
+### What are the resolutions of different crime types?
+
+After having a better understanding of the relationship between victim characteristics like sex and age and criminal incidents, we want to further analyze how do resolution rates vary by different crime types.
+
+After initial inspection of the crime records, we can see only a few crimes that are marked as JO, JA, CC, which represent juvenile other, juvenile arrest, case closed. For the sake of the analysis, we choose to only focus on AO, AA, and IC, which represent adult other, adult arrest, and investigation continued.
+
+```{r}
+crime_summary2 <- grouped_data |>
+  group_by(Crime_Category, status) |>
+  summarise(Count = n(), .groups = "drop")|>
+  group_by(Crime_Category) |>
+  mutate(Percentage = Count / sum(Count) * 100) |>
+  filter(status == "AA" | status == "AO" |status == "IC")
+
+ggplot(crime_summary2, aes(x = status, y = Percentage, fill = status)) +
+  geom_bar(stat = "identity") +
+  facet_wrap(~ Crime_Category, scales = "free_y", ncol = 5) +
+  labs(
+    title = "Crime Types and Their Resolutions",
+    subtitle = "Case Status Definitions: AA (Adult Arrest), AO (Adult Other), IC (Investogation Continued)",
+    x = "Case Status",
+    y = "Resolution Rate (%)",
+    fill = "Case Status"
+  ) +
+  scale_y_continuous(labels = scales::percent_format(scale = 1)) +
+  theme_minimal() +
+  theme(
+    axis.text.x = element_text(angle = 45, hjust = 1),
+    plot.title = element_text(hjust = 0.5, size = 14, face = "bold"),
+    plot.subtitle = element_text(hjust = 0.5, size = 10, face = "italic"),
+    plot.caption = element_text(size = 8),
+    strip.text = element_text(size = 7, face = "bold"),
+    legend.position = "top"
+
+  )
+```
+
+Remark:
+
+1. Across all crime types, the majority of cases are unresolved and still under investigation. Felonies, burglary, fraud, theft, and graffiti have higher unsolved cases. 
+
+2. We can see there tends to be more cases classified as "AO" (Adult Other) than "AA" (Adult Arrest),which means more cases involving an adult where no arrest was made, but some other action was taken. Assault, other(e.g., Arson), public order crimes, sex offenses, and weapon have relatively higher proportions of resolved cases (AA and AO statuses).
+
+The analysis of case statuses reveals that most crimes remain unresolved ("IC" status). Among them, felony and graffiti have the highest proportion of unresolved cases that are still under investigation, which suggest the complexity of these cases and lack of clear evidence. Assault, weapon, public order crimes and other have relatively higher proportion of resolution rates, which may be due to nature of those cases: presence of witnesses, or supporting evidence such as surveillance cameras that's nowadays common in public.
+This disparity shows the challenges of resolving certain crime types and the need for targeted strategies to improve case resolution rates.
+
+### How does crime resolution vary by area and crime type?
+
+Now we want to further see do crime resolution rates vary by different divisions of LAPD to have a better understanding of the nature of crimes.
+
+```{r}
+area_case_summary <- grouped_data |>
+  group_by(area_name, status) |>
+  summarise(Count = n(), .groups = "drop")|>
+  group_by(area_name) |>
+  mutate(Proportion = Count / sum(Count) * 100) |>
+  mutate(area_name = reorder(area_name, -Proportion * (status == "IC")))|>
+  filter(status == "IC" |status == "AO" |status == "AA")
+grouped_data |>
+  filter(status %in% c("AA", "IC"))|>
+  group_by(Crime_Category, area_name, status) |>
+  summarise(Count = n(), .groups = "drop")|>
+  group_by(area_name) |>
+  mutate(Proportion = Count / sum(Count) * 100) |>
+  filter(Crime_Category %in% c("Assault", "Burglary", "Felony", "Other(e.g., Arson)", "Theft", "Weapon"))|>
+  ggplot(aes(x = Proportion, y = reorder(area_name, Proportion), color = status)) +
+  geom_point(size = 1.25) +
+  facet_wrap(~ Crime_Category) +
+  labs(
+    title = "Cleveland Dot Plot of Case Status Proportions by Area",
+    x = "Proportion (%)",
+    y = "Area Name",
+    color = "status"
+  ) +
+  scale_x_continuous(labels = scales::percent_format(scale = 1)) +
+  theme_minimal() +
+  theme(
+    panel.grid.major.x = element_blank(),
+    panel.grid.minor.x = element_blank(),
+    axis.title.y = element_text(size = 13, face = "bold"), 
+    axis.text.y = element_text(size = 7, face = "bold"),
+    plot.title = element_text(hjust = 0.5, size = 14),
+    strip.text = element_text(size = 10, face = "bold"),
+  )
+```
+Remark:
+
+1. For all crime types and all districts of LAPD, there are more unresolved cases.The gap between resolved and unresolved cases is the largest when it come to theft. 
+
+2. We can see for burglary, felony, and weapon involved crimes, they have more consistent resolution rates across all divisions of LAPD. All divisions have relatively higher resolution rates for assault. 
+
+3. Mission division has the highest resolution rate for assault; North Hollywood has the highest resolution rate for other crimes like arson, and Topanga has the highest resolution rate for theft.
+
+The resolution of specific crime types vary across LAPD districts. All neighborhoods have more unresolved cases. Overall, assault and other crimes like arson have higher resolution rates. There's slight inconsistency across different neighborhoods regarding efficiency in solving crimes, which may highlight disparities in justice outcomes and the need for equitable resource distribution.

@@ -12,7 +12,7 @@ To perform the missing value analysis of the dataset, we summarized the number o
 library(readr)
 library(ggplot2)
 
-crime_data <- read.csv(file='../../data/Crime_Data_from_2020_to_Present.csv')
+crime_data <- read_csv("~/Downloads/Crime_Data_from_2020_to_Present.csv", show_col_types = FALSE)
 
 missing_summary <- colMeans(is.na(crime_data)) * 100
 missing_df <- data.frame(Column = names(missing_summary), MissingPercent = missing_summary)
@@ -20,7 +20,8 @@ missing_df <- data.frame(Column = names(missing_summary), MissingPercent = missi
 ggplot(missing_df, aes(x = reorder(Column, -MissingPercent), y = MissingPercent)) +
   geom_bar(stat = "identity", fill = "steelblue") +
   coord_flip() +
-  labs(x = "Variables", y = "Percentage Missing", title = "Missing Data by Column") +
+  labs(x = "Variables", y = "Percentage Miss
+       ing", title = "Missing Data by Column") +
   theme_minimal()
 ```
 

@@ -1,13 +1,33 @@
-# Interactive graph
+---
+title: "Interactive D3 Chart"
+format: html
+---
 
-<style>
-  * {
-    font-family: sans-serif;
-  }
-</style> 
+## Interactive Chart
+<script src="https://d3js.org/d3.v7.min.js"></script>
 
-<div id="plot">
-</div>
+<!-- Year Buttons -->
+<label>Year:</label>
+<button class="year-button selected" data-year="All">All</button>
+<button class="year-button" data-year="2020">2020</button>
+<button class="year-button" data-year="2021">2021</button>
+<button class="year-button" data-year="2022">2022</button>
+<button class="year-button" data-year="2023">2023</button>
+<button class="year-button" data-year="2024">2024</button>
 
-<script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+<!-- Class Buttons -->
+<label>Crime Class:</label>
+<button class="class-button selected" data-class="All">All</button>
+<button class="class-button" data-class="100">100</button>
+<button class="class-button" data-class="200">200</button>
+<button class="class-button" data-class="300">300</button>
+<button class="class-button" data-class="400">400</button>
+<button class="class-button" data-class="500">500</button>
+<button class="class-button" data-class="600">600</button>
+<button class="class-button" data-class="700">700</button>
+<button class="class-button" data-class="800">800</button>
+<button class="class-button" data-class="900">900</button>
+
+
+<svg id="chart" width="800" height="400"></svg>
 <script src="scripts/myscript.js"></script>
