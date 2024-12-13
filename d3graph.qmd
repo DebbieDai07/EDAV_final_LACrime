@@ -1,4 +1,6 @@
-# Interactive Graph: Crime Seriousness Trends Over Years
+# Interactive Graph
+
+## Bar Chart: Crime Seriousness Trends Over Years
 
 <style>
   .selected {
@@ -47,6 +49,8 @@
 <script src="scripts/myscript.js"></script>
 
 
+
+## Commentary
 The above graph presents the distribution of crime seriousness across different years and classes. By default, it shows the frequencies of all seriousness classes over five years. Users can interact with any specific year or class button to view the corresponding frequency. Both year and class limited to single selection.
 
 However, there is a limitation in the current design. When the "All" button for class is selected, the bars for each year are shown as horizontally stacked segments instead of individual vertical bins. While this provides an overall view of the total crime frequency for a given year, it does not separate the classes clearly within the same year. One possible reason for this issue could be the relatively small data for certain seriousness classes in specific years. When the frequency bins are too small to display, the graph defaults to horizontal stacking rather than showing distinct vertical bins.

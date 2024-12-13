@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>4&nbsp; Interactive Graph: Crime Seriousness Trends Over Years – Crime Analysis of LA</title>
+<title>4&nbsp; Interactive Graph – Crime Analysis of LA</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -81,7 +81,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./d3graph.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Interactive Graph: Crime Seriousness Trends Over Years</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./d3graph.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Interactive Graph</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -130,7 +130,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./d3graph.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Interactive Graph: Crime Seriousness Trends Over Years</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Interactive Graph</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -144,15 +144,22 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#bar-chart-crime-seriousness-trends-over-years" id="toc-bar-chart-crime-seriousness-trends-over-years" class="nav-link active" data-scroll-target="#bar-chart-crime-seriousness-trends-over-years"><span class="header-section-number">4.1</span> Bar Chart: Crime Seriousness Trends Over Years</a></li>
+  <li><a href="#commentary" id="toc-commentary" class="nav-link" data-scroll-target="#commentary"><span class="header-section-number">4.2</span> Commentary</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/DebbieDai07/EDAV_final_LACrime.git/edit/main/d3graph.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/DebbieDai07/EDAV_final_LACrime.git/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Interactive Graph: Crime Seriousness Trends Over Years</span></h1>
+<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Interactive Graph</span></h1>
 </div>
 
 
@@ -169,6 +176,8 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<section id="bar-chart-crime-seriousness-trends-over-years" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="bar-chart-crime-seriousness-trends-over-years"><span class="header-section-number">4.1</span> Bar Chart: Crime Seriousness Trends Over Years</h2>
 <style>
   .selected {
     background-color: blue;
@@ -195,10 +204,14 @@ ul.task-list li input[type="checkbox"] {
 </svg>
 <script src="https://d3js.org/d3.v7.min.js"></script>
 <script src="scripts/myscript.js"></script>
+</section>
+<section id="commentary" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="commentary"><span class="header-section-number">4.2</span> Commentary</h2>
 <p>The above graph presents the distribution of crime seriousness across different years and classes. By default, it shows the frequencies of all seriousness classes over five years. Users can interact with any specific year or class button to view the corresponding frequency. Both year and class limited to single selection.</p>
 <p>However, there is a limitation in the current design. When the “All” button for class is selected, the bars for each year are shown as horizontally stacked segments instead of individual vertical bins. While this provides an overall view of the total crime frequency for a given year, it does not separate the classes clearly within the same year. One possible reason for this issue could be the relatively small data for certain seriousness classes in specific years. When the frequency bins are too small to display, the graph defaults to horizontal stacking rather than showing distinct vertical bins.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -641,7 +654,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions"><ul><li><a href="https://github.com/DebbieDai07/EDAV_final_LACrime.git/edit/main/d3graph.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/DebbieDai07/EDAV_final_LACrime.git/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/DebbieDai07/EDAV_final_LACrime.git/edit/main/d3graph.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/DebbieDai07/EDAV_final_LACrime.git/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
 <p>This book was built with <a href="https://quarto.org/">Quarto</a>.</p>
 </div>

@@ -107,8 +107,8 @@ function drawChart(filteredData) {
   svg.append("text")
   .attr("class", "x-axis-label")
   .attr("text-anchor", "middle")
-  .attr("x", width / 2)
-  .attr("y", height + margin.bottom - 3)
+  .attr("x", width - 300)
+  .attr("y", height + margin.bottom + 20)
   .text("Year");
 
   
